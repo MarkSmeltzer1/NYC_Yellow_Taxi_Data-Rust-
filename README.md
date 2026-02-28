@@ -28,7 +28,8 @@ Steps:
 4. The `data/` directory and `.parquet` files are gitignored and are not committed to the repository.
 
 ## How to run the project
-From the project root directory:
+From the project root directory (`nyc_taxi_datafusion`):
 
 ```bash
+cargo build
 cargo run
