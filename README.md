@@ -1,37 +1,78 @@
-# NYC Taxi Aggregations with DataFusion (Rust)
+# NYC Taxi Data Analysis (Rust + DataFusion)
 
-## What the project does
-- Loads NYC TLC Yellow Taxi trip data for the year 2025 from Parquet files using Apache DataFusion.
-- Computes two required aggregations using both the DataFusion **DataFrame API** and **SQL**.
-- Cleans the dataset by filtering trips to pickup year = 2025 to remove out-of-year records present in the raw data.
-- Prints readable aggregation tables to the terminal and reports successful completion.
+## Overview
 
-## Aggregations
+This project analyzes large-scale NYC Yellow Taxi trip data to extract insights on ride patterns, revenue trends, and customer behavior.
 
-### Aggregation 1: Trips and revenue by month
-Groups trips by pickup month (derived from `tpep_pickup_datetime`) and computes the total number of trips, total revenue (sum of `total_amount`), and average fare (average of `fare_amount`) for trips in 2025.
+The dataset contains millions of taxi trip records including timestamps, locations, fares, and payment types, enabling real-world data analysis at scale.
 
-### Aggregation 2: Tip behavior by payment type
-Groups trips by `payment_type` and computes the total number of trips, average tip amount (average of `tip_amount`), and tip rate (sum of `tip_amount` divided by sum of `total_amount`) for trips in 2025.
+---
 
-## Dataset source
-NYC TLC Trip Record Data (Yellow Taxi):  
-https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+## Problem Statement
 
-## How to download the data
-The dataset was downloaded manually from the NYC TLC website.
+The goal of this project is to:
 
-Steps:
-1. Visit the NYC TLC Trip Record Data page.
-2. Download the **Yellow Taxi trip data** for each available month of 2025 in **Parquet** format.
-3. Place the downloaded Parquet files into a local `data/` directory in the project root.
-4. The `data/` directory and `.parquet` files are gitignored and are not committed to the repository.
+* Analyze trip volume and revenue trends over time
+* Understand customer tipping behavior
+* Identify patterns in ride frequency and payment methods
 
-## How to run the project
-From a workspace or terminal:
+---
 
-```bash
-cargo new nyc_taxi_datafusion
-cd nyc_taxi_datafusion
-cargo build
-cargo run
+## Dataset
+
+* NYC Yellow Taxi trip data
+* Includes:
+
+  * Pickup & dropoff timestamps
+  * Trip distance
+  * Fare amount
+  * Tip amount
+  * Payment type
+
+---
+
+## Approach
+
+### Data Processing
+
+* Loaded large-scale Parquet datasets using Apache DataFusion
+* Filtered and cleaned inconsistent or out-of-range records
+* Aggregated data by month and payment type
+
+### Analysis Performed
+
+* Trips and revenue by month
+* Average fare and trip counts
+* Tip behavior by payment type (tip rate and averages)
+
+---
+
+## Key Results
+
+* Identified monthly revenue and demand trends across the dataset
+* Analyzed tipping patterns across different payment methods
+* Demonstrated ability to process and analyze large-scale datasets efficiently using Rust
+
+---
+
+## Technologies Used
+
+* Rust
+* Apache DataFusion
+* Apache Arrow
+
+---
+
+## Key Learnings
+
+* Working with large-scale, real-world datasets
+* Data aggregation and performance optimization
+* Translating raw data into actionable insights
+
+---
+
+## Future Improvements
+
+* Add visualization dashboards
+* Implement forecasting models (time-series)
+* Integrate SQL-based querying interfaces
